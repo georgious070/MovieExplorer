@@ -1,6 +1,7 @@
 package com.movie.moviewexplorer.ui.activities
 
 import android.os.Bundle
+import com.movie.moviewexplorer.R
 import com.movie.moviewexplorer.databinding.ActivitySearchMovieBinding
 import com.movie.moviewexplorer.ui.base.BaseActivity
 import com.movie.moviewexplorer.ui.models.MovieParcelable
@@ -15,7 +16,7 @@ class SearchMovieActivity : BaseActivity<ActivitySearchMovieBinding, SearchMovie
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.recyclerView.adapter = adapter
+        binding.recycler.adapter = adapter
     }
 
     fun onMovieClick(position: Int, movies: List<MovieParcelable>) {

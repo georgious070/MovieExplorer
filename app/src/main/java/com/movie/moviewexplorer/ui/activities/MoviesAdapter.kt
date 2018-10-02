@@ -8,6 +8,8 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.movie.moviewexplorer.BR
+import com.movie.moviewexplorer.R
 import com.movie.moviewexplorer.ui.models.MovieParcelable
 
 class MoviesAdapter(val clickMovie: (Int, List<MovieParcelable>) -> Unit) : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
