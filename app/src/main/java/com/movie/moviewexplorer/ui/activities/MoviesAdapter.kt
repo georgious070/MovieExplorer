@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.ObservableField
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DiffUtil
@@ -31,10 +32,11 @@ class MoviesAdapter(val clickMovie: (Int, List<MovieParcelable>) -> Unit) : Recy
         return MovieViewHolder(binding.root).also { binding.setVariable(BR.viewModel, it) }
     }
 
-    override fun getItemCount(): Int = movies.size
+    override fun getItemCount() = movies.size
 
-    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) =
-            holder.item.postValue(movies[position])
+    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
+        holder.item.value = movies[position]
+    }
 
     inner class MovieViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         val item = MutableLiveData<MovieParcelable>()
@@ -50,12 +52,12 @@ class BaseDiffUtilCallback(
 ) : DiffUtil.Callback() {
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
-            oldList[oldItemPosition].title == newList[newItemPosition].title
+            oldList[oldItemPosition].id == newList[newItemPosition].id
 
     override fun getOldListSize(): Int = oldList.size
 
     override fun getNewListSize(): Int = newList.size
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
-            oldList[oldItemPosition] === newList[newItemPosition]
+            oldList[oldItemPosition].id == newList[newItemPosition].id
 }

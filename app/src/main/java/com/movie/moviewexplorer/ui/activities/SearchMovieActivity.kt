@@ -13,7 +13,7 @@ class SearchMovieActivity : BaseActivity<ActivitySearchMovieBinding, SearchMovie
 
     override val layoutId = R.layout.activity_search_movie
     override val viewModel: SearchMovieViewModel by viewModel()
-    val adapter get() = MoviesAdapter { position, movies -> onMovieClick(position, movies) }
+    private val adapter = MoviesAdapter { position, movies -> onMovieClick(position, movies) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +21,7 @@ class SearchMovieActivity : BaseActivity<ActivitySearchMovieBinding, SearchMovie
         viewModel.setupAdapterEvent.observe(this, Observer { adapter.updateAdapter(it) })
     }
 
-    fun onMovieClick(position: Int, movies: List<MovieParcelable>) {
+    private fun onMovieClick(position: Int, movies: List<MovieParcelable>) {
 
     }
 }

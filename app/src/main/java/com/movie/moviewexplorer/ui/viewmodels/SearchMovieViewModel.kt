@@ -15,7 +15,7 @@ class SearchMovieViewModel(val getMoviesByQuery: GetMoviesByQueryUseCase) : Base
                 .subscribeOn(SchedulerType.WORK.instantiateScheduler())
                 .observeOn(SchedulerType.MAIN.instantiateScheduler())
                 .subscribe { result ->
-                    setupAdapterEvent.postValue(result.map { MovieParcelable(it.poster, it.title, it.year) })
+                    setupAdapterEvent.postValue(result.map { MovieParcelable(it.id, it.poster, it.title, it.year) })
                 }.let(disposables::add)
     }
 }

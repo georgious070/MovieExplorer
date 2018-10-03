@@ -10,7 +10,11 @@ class MovieRepository(val api: TheMovieApi) : Repository {
             api.getMoviesFromSearch(query = queryText)
                     .map { response ->
                         response.results?.map {
-                            Movie(it.poster_path ?: "", it.title ?: "", it.release_date ?: "")
+                            Movie(
+                                    it.id,
+                                    it.poster_path ?: "",
+                                    it.title ?: "",
+                                    it.release_date ?: "")
                         } ?: emptyList()
                     }
 }

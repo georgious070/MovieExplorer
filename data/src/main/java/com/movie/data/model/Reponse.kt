@@ -8,6 +8,8 @@ data class MainInfo(
 )
 
 data class MovieResponse(
+        @SerializedName("id")
+        val id: Int,
         @SerializedName("title")
         val title: String?,
         @SerializedName("poster_path")
