@@ -1,6 +1,7 @@
 package com.movie.data
 
 import com.movie.domain.Repository
+import com.movie.domain.models.Details
 import com.movie.domain.models.Movie
 import io.reactivex.Single
 
@@ -12,9 +13,24 @@ class MovieRepository(val api: TheMovieApi) : Repository {
                         response.results?.map {
                             Movie(
                                     it.id,
-                                    it.poster_path ?: "",
+                                    it.posterPath ?: "",
                                     it.title ?: "",
-                                    it.release_date ?: "")
+                                    it.releaseDate ?: ""
+                            )
                         } ?: emptyList()
+                    }
+
+    override fun getDetails(id: Int): Single<Details> =
+            api.getDetails(id)
+                    .map {
+                        Details(
+                                it.backdropPath,
+                                it.overview,
+                                it.revenue,
+                                it.runtime,
+                                it.title,
+                                it.voteAverage,
+                                it.voteCount
+                        )
                     }
 }

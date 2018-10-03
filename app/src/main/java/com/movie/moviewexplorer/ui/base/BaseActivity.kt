@@ -1,6 +1,5 @@
 package com.movie.moviewexplorer.ui.base
 
-import android.app.AppComponentFactory
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -18,5 +17,6 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, layoutId)
         binding.setVariable(BR.viewModel, viewModel)
+        binding.setLifecycleOwner(this)
     }
 }

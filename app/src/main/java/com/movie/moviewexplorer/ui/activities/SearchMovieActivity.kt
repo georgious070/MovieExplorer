@@ -2,10 +2,10 @@ package com.movie.moviewexplorer.ui.activities
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
+import com.movie.domain.models.Movie
 import com.movie.moviewexplorer.R
 import com.movie.moviewexplorer.databinding.ActivitySearchMovieBinding
 import com.movie.moviewexplorer.ui.base.BaseActivity
-import com.movie.moviewexplorer.ui.models.MovieParcelable
 import com.movie.moviewexplorer.ui.viewmodels.SearchMovieViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -21,7 +21,7 @@ class SearchMovieActivity : BaseActivity<ActivitySearchMovieBinding, SearchMovie
         viewModel.setupAdapterEvent.observe(this, Observer { adapter.updateAdapter(it) })
     }
 
-    private fun onMovieClick(position: Int, movies: List<MovieParcelable>) {
-
+    private fun onMovieClick(position: Int, movies: List<Movie>) {
+        startActivity(DetailsActivity.newIntent(this, movies[position].id))
     }
 }

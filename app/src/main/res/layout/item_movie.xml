@@ -17,8 +17,9 @@
 
         <ImageView
             android:id="@+id/poster"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:imageUrl="@{viewModel.item.poster}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,12 +27,12 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="@dimen/margin_medium"
             android:textSize="18sp"
             android:textColor="@color/colorAccent"
             android:text="@{viewModel.item.title}"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toEndOf="@id/poster"/>
 
         <TextView
             android:id="@+id/year"

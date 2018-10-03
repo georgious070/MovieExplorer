@@ -4,20 +4,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.ObservableField
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.movie.domain.models.Movie
 import com.movie.moviewexplorer.BR
 import com.movie.moviewexplorer.R
-import com.movie.moviewexplorer.ui.models.MovieParcelable
 
-class MoviesAdapter(val clickMovie: (Int, List<MovieParcelable>) -> Unit) : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
+class MoviesAdapter(val clickMovie: (Int, List<Movie>) -> Unit) : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
 
-    private var movies = listOf<MovieParcelable>()
+    private var movies = listOf<Movie>()
 
-    fun updateAdapter(newMovies: List<MovieParcelable>) {
+    fun updateAdapter(newMovies: List<Movie>) {
         val diffResult = DiffUtil.calculateDiff(BaseDiffUtilCallback(newMovies, movies))
         movies = newMovies
         diffResult.dispatchUpdatesTo(this)
@@ -39,7 +38,7 @@ class MoviesAdapter(val clickMovie: (Int, List<MovieParcelable>) -> Unit) : Recy
     }
 
     inner class MovieViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        val item = MutableLiveData<MovieParcelable>()
+        val item = MutableLiveData<Movie>()
 
         fun movieClick() {
             clickMovie(adapterPosition, movies)
@@ -48,7 +47,7 @@ class MoviesAdapter(val clickMovie: (Int, List<MovieParcelable>) -> Unit) : Recy
 }
 
 class BaseDiffUtilCallback(
-        private val newList: List<MovieParcelable>, private val oldList: List<MovieParcelable>
+        private val newList: List<Movie>, private val oldList: List<Movie>
 ) : DiffUtil.Callback() {
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
