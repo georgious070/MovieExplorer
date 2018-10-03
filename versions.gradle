@@ -11,7 +11,7 @@ ext {
             gradlePlugin: '3.2.0',
             kotlin      : '1.2.60',
             ktx         : '1.0.0',
-            rxAndroid   : '2.0.1',
+            rxAndroid   : '2.0.2',
             rxJava      : '2.1.4',
             retrofit    : '2.4.0',
             koin        : '1.0.0',
