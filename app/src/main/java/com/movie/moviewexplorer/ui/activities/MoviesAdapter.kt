@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.ObservableField
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DiffUtil
@@ -34,11 +35,11 @@ class MoviesAdapter(val clickMovie: (Int, List<Movie>) -> Unit) : RecyclerView.A
     override fun getItemCount() = movies.size
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.item.value = movies[position]
+        holder.item.set(movies[position])
     }
 
     inner class MovieViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        val item = MutableLiveData<Movie>()
+        val item = ObservableField<Movie>()
 
         fun movieClick() {
             clickMovie(adapterPosition, movies)
