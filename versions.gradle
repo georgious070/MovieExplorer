@@ -9,7 +9,7 @@ ext {
             versionName : '1.0',
 
             gradlePlugin: '3.2.0',
-            kotlin      : '1.2.60',
+            kotlin      : '1.2.71',
             ktx         : '1.0.0',
             rxAndroid   : '2.0.2',
             rxJava      : '2.1.4',
